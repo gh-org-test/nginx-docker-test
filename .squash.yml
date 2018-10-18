@@ -1,0 +1,5 @@
+deployments:
+  default:
+    subdomain_port_mapping:
+      - oscar:8000
+      - airflow:8080

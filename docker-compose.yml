@@ -26,7 +26,12 @@ services:
     image: puckel/docker-airflow
     ports:
       - 8080:8080
-    command: website
+    command: webserver
+  react-dashboard:
+    build: ./react
+    ports:
+      - 3000:3000
+    command: /bin/bash -c "cd /MyApp && npm run serve"
 volumes:
   odoo-web-data:
   odoo-db-data:
