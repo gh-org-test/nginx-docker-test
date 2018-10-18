@@ -1,0 +1,32 @@
+version: '3.1'
+services:
+  odoo:
+    image: odoo:10.0
+    depends_on:
+      - db
+    ports:
+      - "80:8069"
+    volumes:
+      - odoo-web-data:/var/lib/odoo
+      - ./config:/etc/odoo
+      - ./addons:/mnt/extra-addons
+  db:
+    image: postgres:9.4
+    environment:
+      - POSTGRES_PASSWORD=odoo
+      - POSTGRES_USER=odoo
+      - PGDATA=/var/lib/postgresql/data/pgdata
+    volumes:
+      - odoo-db-data:/var/lib/postgresql/data/pgdata
+  django-oscar:
+    image: oscarcommerce/django-oscar-sandbox
+    ports:
+      - 8000:8080    
+  django-airflow:
+    image: puckel/docker-airflow
+    ports:
+      - 8080:8080
+    command: website
+volumes:
+  odoo-web-data:
+  odoo-db-data:
