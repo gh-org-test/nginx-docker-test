@@ -1,11 +1,15 @@
 version: '3.4'
 services:
   nginx:
-    image: openresty/openresty:jessie
+    image: nginx:latest
     volumes:
-      - ./nginx.conf:/usr/local/openresty/nginx/conf/nginx.conf
+      - ./nginx/:/etc/nginx/conf.d/
     ports:
       - 80:80
+    depends_on:
+      - django-airflow
+      - django-mezzanine
+      - reaction
 
   db:
     image: postgres:9.4
@@ -22,10 +26,16 @@ services:
 
   django-mezzanine:
     image: noisy/mezzanine-docker-demo
+    volumes:
+      - ./run_server.sh:/run_server.sh
+    command: /bin/bash /run_server.sh
     ports:
       - 8000:80
     links:
       - db
+
+  django-cms:
+    image: divio/django-cms-preview
 
   django-airflow:
     image: puckel/docker-airflow

@@ -3,3 +3,4 @@ deployments:
     subdomain_port_mapping:
       - reaction:3000
       - airflow:8080
+      - mezzanine:8000
