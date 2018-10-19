@@ -4,3 +4,6 @@ deployments:
       - reaction:3000
       - airflow:8080
       - mezzanine:8000
+    domain:
+      - squashlabs.co
+      - codescore.io

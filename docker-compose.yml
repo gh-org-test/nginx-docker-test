@@ -50,7 +50,7 @@ services:
     ports:
       - "3000:3000"
     environment:
-      ROOT_URL: "http://reaction--${SQUASH_DOMAIN}:3000"
+      ROOT_URL: "http://reaction--${SQUASH_DOMAIN}"
       MONGO_URL: "mongodb://mongo:27017/reaction"
     restart:
       always
