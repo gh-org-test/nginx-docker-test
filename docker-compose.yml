@@ -8,31 +8,32 @@ services:
       - 80:80
     depends_on:
       - django-airflow
-      - django-mezzanine
+      - odoo
       - reaction
 
   db:
     image: postgres:9.4
     environment:
-      - POSTGRES_PASSWORD=password
-      - POSTGRES_USER=postgres
+      - POSTGRES_PASSWORD=odoo
+      - POSTGRES_USER=odoo
       - PGDATA=/var/lib/postgresql/data/pgdata
     volumes:
-      - mezzanine-db-data:/var/lib/postgresql/data/pgdata
+      - odoo-db-data:/var/lib/postgresql/data/pgdata
+
   mongo:
     image: mongo
     command: mongod --storageEngine=wiredTiger
 
-
-  django-mezzanine:
-    image: noisy/mezzanine-docker-demo
-    volumes:
-      - ./run_server.sh:/run_server.sh
-    command: /bin/bash /run_server.sh
-    ports:
-      - 8000:80
-    links:
+  odoo:
+    image: odoo:10.0
+    depends_on:
       - db
+    ports:
+      - 8069:8069
+    volumes:
+      - odoo-web-data:/var/lib/odoo
+      - ./config:/etc/odoo
+      - ./addons:/mnt/extra-addons
 
   django-cms:
     image: divio/django-cms-preview
@@ -48,7 +49,7 @@ services:
     depends_on:
       - mongo
     ports:
-      - "3000:3000"
+      - 3000:3000
     environment:
       ROOT_URL: "http://reaction--${SQUASH_DOMAIN}"
       MONGO_URL: "mongodb://mongo:27017/reaction"
@@ -56,4 +57,5 @@ services:
       always
 
 volumes:
-  mezzanine-db-data:
+  odoo-web-data:
+  odoo-db-data:
