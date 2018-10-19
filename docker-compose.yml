@@ -37,6 +37,8 @@ services:
 
   django-cms:
     image: divio/django-cms-preview
+    ports:
+      - 8000:80
 
   django-airflow:
     image: puckel/docker-airflow
@@ -48,10 +50,8 @@ services:
     image: reactioncommerce/reaction:latest
     depends_on:
       - mongo
-    ports:
-      - 3000:3000
     environment:
-      ROOT_URL: "http://reaction--${SQUASH_DOMAIN}"
+      ROOT_URL: "http://${SQUASH_DOMAIN}"
       MONGO_URL: "mongodb://mongo:27017/reaction"
     restart:
       always
