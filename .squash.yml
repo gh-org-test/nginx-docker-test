@@ -5,6 +5,6 @@ deployments:
       - airflow:8080
       - odoo:8069
     domain:
-      - deployster.io
       - squashlabs.co
+      - deployster.io
       - codescore.io
