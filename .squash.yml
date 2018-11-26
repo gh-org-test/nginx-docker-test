@@ -1,10 +1,10 @@
 deployments:
   default:
     subdomain_port_mapping:
-      - reaction:3000
       - django-cms:8000
       - airflow:8080
       - odoo:8069
+      - reaction:3000
     domain:
       - squashlabs.co
       - deployster.io
