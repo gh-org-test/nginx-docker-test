@@ -52,7 +52,7 @@ services:
     depends_on:
       - mongo
     environment:
-      ROOT_URL: "http://${SQUASH_DOMAIN}"
+      ROOT_URL: "http://reaction--${SQUASH_DOMAIN}"
       MONGO_URL: "mongodb://mongo:27017/reaction"
     restart:
       always
