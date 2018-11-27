@@ -11,6 +11,6 @@ deployments:
       - codescore.io
     deployment_page_commands:
       List something:
-        - ls -la ./*
+        - ls -la
       Update:
         - DEBIAN_FRONTEND=noninteractive apt-get update -y && DEBIAN_FRONTEND=noninteractive apt-get upgrade -y
