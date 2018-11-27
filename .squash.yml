@@ -13,4 +13,4 @@ deployments:
       List something:
         - ls -la ./*
       Update:
-        - DEBIAN_FRONTEND=noninteractive apt-get update && DEBIAN_FRONTEND=noninteractive apt-get upgrade
+        - DEBIAN_FRONTEND=noninteractive apt-get update -y && DEBIAN_FRONTEND=noninteractive apt-get upgrade -y
