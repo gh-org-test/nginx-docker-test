@@ -9,3 +9,6 @@ deployments:
       - squashlabs.co
       - deployster.io
       - codescore.io
+    deployment_page_commands:
+      List something:
+        - ls -la ./*
