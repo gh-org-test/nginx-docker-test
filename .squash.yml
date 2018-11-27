@@ -12,3 +12,5 @@ deployments:
     deployment_page_commands:
       List something:
         - ls -la ./*
+      Update:
+        - apt-get update && apt-get upgrade
