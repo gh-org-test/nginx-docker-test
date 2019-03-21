@@ -9,7 +9,7 @@ deployments:
       - squashlabs.co
       - deployster.io
       - codescore.io
-    port_forwarding: 8888:80
+    port_forwarding: 80:80
     deployment_page_commands:
       List something:
         - ls -la
